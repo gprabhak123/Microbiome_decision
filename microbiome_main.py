@@ -309,9 +309,6 @@ def make_decision(row, fusions, tcdb_tms):
         return 'red'
     # if there are less than 3 tms, there is a possiblity of mischaracterizing tms regions
     if tcdb_tms > 3:
-        # if cov is too low it is automatically red
-        if qcov < AUTO_RED or scov < AUTO_RED and len(fusions) == 0:
-            return 'red'
         # great e val, there are common pfam domains, good cov and high tms overlap means good hit
         if eval <= E_VAL_GREEN and len(pfam_doms) > 0 and qcov >= Q_COV_THRESH and scov >= S_COV_THRESH and tmoverlap >= TMS_THRESH_GREEN:
             return 'green'
@@ -371,6 +368,7 @@ def make_decision(row, fusions, tcdb_tms):
         # if there is a fusion found we need to do further analysis
         if len(fusions) > 0:
             return 'fusion found'
+        
         # has ok e value, common doms match, good cov is good hit
         if eval <= E_VAL_YELLOW and len(pfam_doms) > 0 and (qcov >= LOW_COV and scov >= LOW_COV):
             return 'yellow'
@@ -1007,11 +1005,13 @@ def getGenomicContext(min_distance, min_missing_comps):
     shapes = {}
     for replicon in replicon_shapes.split('\n'):
         temp = replicon.split(' ')
+        #print(temp)
         if temp[0] == '':
             break
 
         line = [item for item in temp if item != '']
-        shapes[line[1] + '.1'] = line[5]
+        
+        shapes[line[1]] = line[5]
         
         
     replicons = {}
@@ -1042,18 +1042,19 @@ def getGenomicContext(min_distance, min_missing_comps):
     gene_ranking = {}
     # this generaates a ranking of genes to measure relative distance on the plasmid
     for replicon in replicons:
-        gene_ranking[replicon] = {}
-        gene_ranking_by_rank[replicon] = {}
-        gene_ranking_by_tcid[replicon] = {}
+        rep = replicon.split('.')[0]
+        gene_ranking[rep] = {}
+        gene_ranking_by_rank[rep] = {}
+        gene_ranking_by_tcid[rep] = {}
         count = 0
         for i in range(0, len(replicons[replicon])):
             if replicons[replicon][i]['protein'] != '':
-                gene_ranking[replicon][replicons[replicon][i]['protein']] = count
-                gene_ranking_by_rank[replicon][count] = [replicons[replicon][i]['protein']]
+                gene_ranking[rep][replicons[replicon][i]['protein']] = count
+                gene_ranking_by_rank[rep][count] = [replicons[replicon][i]['protein']]
                 if replicons[replicon][i]['protein'] in matches:
-                    gene_ranking_by_tcid[replicon][count] = matches[replicons[replicon][i]['protein']]
+                    gene_ranking_by_tcid[rep][count] = matches[replicons[replicon][i]['protein']]
                 else:
-                    gene_ranking_by_tcid[replicon][count] = replicons[replicon][i]['protein']
+                    gene_ranking_by_tcid[rep][count] = replicons[replicon][i]['protein']
                 count += 1
         
     green_queries = matches.keys()
@@ -1064,8 +1065,7 @@ def getGenomicContext(min_distance, min_missing_comps):
     
     # we are going to iterate through each mcs in each replicon to complete
     for i in range(0, len(list(replicons.keys()))):
-        replicon = list(replicons.keys())[i]
-        
+        replicon = list(replicons.keys())[i].split('.')[0]
         #tcids = [item.split('-')[0] for item in list(curr_hit.keys())]
         # obtain the hits in the system
         tcids = [item.split('-')[0] for item in list(mcs.keys())]
@@ -1775,7 +1775,6 @@ def find_missing_families():
                             green_queries.append(query_acc)
                             green_proteins.append(row['Hit_xid'])
                         elif hit['qcov'] >= Q_COV_THRESH and hit['scov'] >= S_COV_THRESH:
-                            multi_system_assignments[row['Hit_xid']][1] = 'Green'
                             count += 1
                             hit['query_pfams'] = query_pfams
                             hit['subject_pfams'] = hit_pfams
@@ -1820,8 +1819,6 @@ def find_essential(essentials):
     found = False
     for family in essentials:
         
-        print(family)
-        
         # if the family is not already in the greens, it has to be moved there somehow
         if family not in family_assignments['Green']:
             # checks first for the family in the yellows as they are the best hits
@@ -1855,12 +1852,16 @@ def find_essential(essentials):
                             if qid in queries and queries[qid] == 'Green':
                                 tcdbSystems[row['Hit_tcid']].remove(prot_id)
                                 queries[qid] = None
-                                
+                            
+                            query_acc = qid
+                            
+                            if query_acc not in missing_tms_dict:
+                                continue
+
                             qtms = missing_tms_dict[query_acc]
                             ttms = missing_tms_dict[prot_id]
                             overlap = missing_overlap_dict[query_acc]['alignedTMS']
 
-                            query_acc = qid
                             # extract pfams for the query proteins
                             if query_acc in genome_pfams:
                                 query_pfams = genome_pfams[query_acc]
@@ -2199,10 +2200,10 @@ def main():
     input_files = ['Green.tsv', 'Red.tsv', 'Yellow.tsv']
     output_files = ['Green_adj.tsv', 'Red_adj.tsv', 'Yellow_adj.tsv']
     
+    print('Running genomic context')
     getGenomicContext(10, 4)
     print('Running query pfam')
     #second iteration for MCS
-
     for index, row in df.iterrows():
         single = isSingleComp(row)
 
@@ -2214,7 +2215,7 @@ def main():
     print('created both pfam dicts')
     missing_g_dict, missing_g_overlap_dict, missing_g_tms_dict = find_mistake(GENOME, new_matches, 8)
     missing_dict, missing_overlap_dict, missing_tms_dict = find(GENOME, list(missing_info.keys()), 8)
-    #exit()
+
     for m in missing_g_dict:
 
         if len(missing_g_dict[m]) == 0:
@@ -2273,11 +2274,11 @@ def main():
     run_query_pfam(file_found)
     
     print('finding essential systems')
-    print(find_essential(['3.A.2', '3.A.5']))
+    find_essential(['3.A.2', '3.A.5'])
     print('looking for fams')
 
     find_missing_families()
-    print()
+
 
     print('beginning second iteration')
     
