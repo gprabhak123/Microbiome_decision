@@ -1,5 +1,4 @@
 #all imports of chebi_parser, comparedTransportomeAssignment, and substrate
-import libchebipy
 import argparse
 import os,sys
 import sys
@@ -11,9 +10,6 @@ import networkx
 
 from decimal import Decimal
 from substrate import get_substrate_data 
-#from libchebipy import ChebiEntity
-#from chebi_parser import find_predecessor,find_role,get_primary
-from compareTransportomeAssignments import readLines
 
 
 #@Parameter: substrate data, and list of tcids wish to obtain ChebiIDs from
@@ -297,7 +293,7 @@ def set_of_tuples_to_txt(input_set, file_path):
         print(f"Set of tuples successfully written to {file_path}")
     except Exception as e:
         print(f"Error: {e}")
-
+'''
 if __name__ == "__main__":
     compareDict = parse_csv_file('MasterTable.csv',',')
     substrate_dict = get_substrate_data('https://tcdb.org/cgi-bin/substrates/getSubstrates.py')
@@ -339,24 +335,6 @@ if __name__ == "__main__":
                 myGroup[key]['Role'].append(str(findRole(id,idToRelationship,role_classes)) + '-' + getSubstrateName(id, idToName) + '(' + id + ')')
                 if len(findRole(id,idToRelationship,role_classes)) == 0:
                     noRoles.add((getSubstrateName(id,idToName), id))
-                '''
-                predecessor = str(findPredecessor(id, idToParent, classes=ce_classes)[0])
-                predecessorID = str(findPredecessor(id,classes=ce_classes)[1])
-                CE = str(chebi_entity.get_name())
-                CEID = str(chebi_entity.get_id())
-                role = str(find_role(i,classes=role_classes)[0])
-                roleID = str(find_role(i,classes=role_classes)[1])
-                #Predecessor(Predecessor Chebi ID)-CE name(CE Chebi ID)
-                if predecessor == 'None' and predecessorID =='None':
-                    myGroup[key]['CE'].append(CE + '(' + CEID + ')')
-                else:
-                    myGroup[key]['CE'].append(predecessor + '(' + predecessorID +')' +'-'+ CE + '(' + CEID + ')')
-                #Role(Role Chebi ID)-CE name(CE Chebi ID)
-                if role == 'None' and roleID == 'None':
-                    myGroup[key]['Role'].append(CE + '(' + CEID + ')')
-                else:
-                    myGroup[key]['Role'].append(role + '(' + roleID +')' +'-'+ CE + '(' + CEID + ')')
-                '''
 
 
 
@@ -368,8 +346,7 @@ if __name__ == "__main__":
     print_Table(myGroup, '/Users/siyanlin/Downloads', 'FinalTable.tsv')
     set_of_tuples_to_txt(noRoles,'/Users/siyanlin/Downloads/NEWnoRoles3.txt')
     set_of_tuples_to_txt(noPredecessor, '/Users/siyanlin/Downloads/noPredecessors2.txt')
-    #print(readLines('MasterTable.csv'))
 
 #Finding: 1.A.1.28.7 not in output file, Likely due to it not being in substrate data
-
+'''
     

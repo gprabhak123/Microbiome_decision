@@ -1,4 +1,5 @@
 from genome_comparison import *
+from combined import *
 import pandas as pd
 import os
 import csv
@@ -26,6 +27,39 @@ def master_df_column_gen(directory):
 
 # declare master_dict as global
 master_dict = {}
+
+def ce_role_dict_generation():    
+    substrate_dict = get_substrate_data('https://tcdb.org/cgi-bin/substrates/getSubstrates.py')
+
+    input = list(master_dict.keys())
+
+    cleanChebiIDs = get_chebi_id(substrate_dict, input)
+    
+    role_classes = set(['CHEBI:23888','CHEBI:33281','CHEBI:26672','CHEBI:31432','CHEBI:33229','CHEBI:23357','CHEBI:25212',
+                        'CHEBI:23924', 'CHEBI:27780', 'CHEBI:35703', 'CHEBI:37958', 'CHEBI:38161', 'CHEBI:71338', 'CHEBI:62488',
+                        'CHEBI:33280', 'CHEBI:25728'])
+
+    graph, idToName, nameToId, idToParent, altIDToID, idToRelationship = oboParse('chebi.obo')
+
+    predecessorDict = terminalPredecessorParse('substrateTypes.tsv')
+
+    myGroup = {}
+    for key in cleanChebiIDs:
+        if cleanChebiIDs[key] == 'none':
+            myGroup[key] = {}
+            myGroup[key]['CE'] = ['none']
+            myGroup[key]['Role'] = ['none']
+        else:
+            myGroup[key] = {}
+            myGroup[key]['CE'] = []
+            myGroup[key]['Role'] = []
+            for id in cleanChebiIDs[key]:
+                id = findPrimary(id, altIDToID)
+                myGroup[key]['CE'].append(str(findPredecessor(id,predecessorDict,graph)) + '-' + getSubstrateName(id, idToName) + '(' + id + ')')
+                myGroup[key]['Role'].append(str(findRole(id,idToRelationship,role_classes)) + '-' + getSubstrateName(id, idToName) + '(' + id + ')')
+    
+    return myGroup
+
 
 def master_dict_generation(green_dir):
     getSmithWaterman(pwd)
@@ -109,7 +143,17 @@ def master_dict_generation(green_dir):
                         'qcov': qcov_val,
                         'scov': scov_val,
                     }
-                
+
+    ce_role_dict = ce_role_dict_generation()
+
+    for tcid in master_dict:
+        ce = ce_role_dict[tcid]['CE']
+        role = ce_role_dict[tcid]['Role']
+        for genome in master_dict[tcid]:
+            for q_id in master_dict[tcid][genome]:
+                master_dict[tcid][genome][q_id]['CE'] = ce
+                master_dict[tcid][genome][q_id]['Role'] = role
+
 NUM_COL_PRE_GENOME = 5
 NUM_COL_PER_GENOME = 6
 
