@@ -2,7 +2,7 @@
 import argparse
 import os,sys
 import sys
-import requests
+#import requests
 import urllib
 import csv
 import obonet

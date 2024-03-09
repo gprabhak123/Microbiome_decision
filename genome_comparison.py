@@ -45,6 +45,7 @@ def get_matches(directory):
             if row['Hit_tcid'] not in protein_tcid_dict:
                 xid = row['Hit_xid']
                 fix_cmd = f'grep {xid} ~/db/blastdb/tcdb.faa'
+                print(f'{fix_cmd}')
                 correct_tcdb = subprocess.run([fix_cmd], stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True, text=True).stdout.strip().split('>')[1]
                 tc_acc = correct_tcdb
             else:

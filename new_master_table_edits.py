@@ -4,9 +4,12 @@ import pandas as pd
 import os
 import csv
 import copy
+import subprocess
 
 genomes = []
 pwd = 'test_comparisons'
+
+superfamilies = ['1.A.17', '2.A.7', '1.E.11', '1.E.36', '1.C.12', '1.A.72', '2.A.29', '2.A.66','3.A.3', '1.C.41', '2.A.6']
 
 
 # generates the columns needed for our Master Dataframe
@@ -59,7 +62,6 @@ def ce_role_dict_generation():
                 myGroup[key]['Role'].append(str(findRole(id,idToRelationship,role_classes)) + '-' + getSubstrateName(id, idToName) + '(' + id + ')')
     
     return myGroup
-
 
 def master_dict_generation(green_dir):
     getSmithWaterman(pwd)
@@ -143,7 +145,7 @@ def master_dict_generation(green_dir):
                         'qcov': qcov_val,
                         'scov': scov_val,
                     }
-
+    
     ce_role_dict = ce_role_dict_generation()
 
     for tcid in master_dict:
@@ -192,9 +194,12 @@ def master_tsv_generation():
 
         master_array.append(output_row)
 
-    with open('test_array_output.tsv', 'w', newline='') as tsv_output:
+    with open('new_sorted_master_table.tsv', 'w', newline='') as tsv_output:
+        sorted_master_array = sorted(master_array, key=lambda x: str(x[0]))
         writer = csv.writer(tsv_output, delimiter='\t')
-        writer.writerows(master_array)
+        writer.writerows(sorted_master_array)
+    
+    
 
 def additional_row(prev_row, protein_vals):
         additional_row = prev_row
@@ -242,10 +247,93 @@ def genome_tsv_generation():
         print('Finished with ' + genome)
 
 
+def gen_family_tsv(directory, greens_dir):
+    family_data = {}
+    master_fam_dict = {}
+    items = os.listdir(directory)
+    genome_content = {}
+    total_families = []
+    genomes = [item for item in items if (os.path.isdir(os.path.join(directory, item)) and 'GCF' in item)]
+
+    fam_df = pd.DataFrame(columns=genomes)
+    for filename in os.listdir(greens_dir):
+        file_parts = filename.split('_')[:2]
+        genome = '_'.join(file_parts)
+
+        green_df = pd.read_csv(os.path.join(greens_dir, filename), delimiter='\t')
+        
+        genome_content[genome] = {}
+        for index, row in green_df.iterrows():
+            tcid = row['Hit_tcid']
+
+            temp = tcid.split('.')
+            # define a family either on the first 3 characters of tcid or first 4
+            fam = temp[0] + '.' + temp[1] + '.' + temp[2]
+            if fam in superfamilies:
+                fam = temp[0] + '.' + temp[1] + '.' + temp[2] + '.' + temp[3] 
+
+            if fam not in total_families:
+                total_families.append(fam)
+            
+            if fam not in genome_content[genome]:
+                genome_content[genome][fam] = 1
+            else:
+                genome_content[genome][fam] += 1
+
+    for g in genome_content:
+        family_data[g] = []
+
+        for f in total_families:
+            if f in genome_content[g]:
+                family_data[g].append(1)
+            else:
+                family_data[g].append(0)
+
+    fam_percents = {}
+    for f in total_families:
+        fam_percents[f] = []
+        
+        for g in genome_content:
+            if f in genome_content[g]:
+                fam_percents[f].append(genome_content[g][f])
+            else:
+                fam_percents[f].append(0)
+    
+
+
+    for family in fam_percents:
+        max_val = max(fam_percents[family])
+        
+        new_list = []
+        for val in fam_percents[family]:
+            percent = round(float(val/max_val), 2)
+            new_list.append(percent)
+        
+        fam_percents[family] = new_list
+
+    
+    # for f in total_families:
+    #     family_data[f] = []
+
+    #     for g in genome_content:
+    #         if f in genome_content[g]:
+    #             family_data[f].append(1)
+    #         else:
+    #             family_data[f].append(0)
+
+
+    percent_df = pd.DataFrame.from_dict(fam_percents, orient='index')
+    percent_df.columns = genomes
+    percent_df.to_csv('family_percent.tsv')
+    
+    fam_df = pd.DataFrame(family_data)
+    fam_df.index = total_families
+    fam_df.to_csv('family_matrix.tsv')
+
 master_dict_generation(pwd + '/greens')
 master_df_column_gen(pwd)
-# genome_tsv_generation()
+genome_tsv_generation()
         
 
 master_tsv_generation()
-
+gen_family_tsv(pwd, pwd + '/greens')
