@@ -1,0 +1,322 @@
+#Type	Substrates	ChEBI
+AA	(E)-4-(trimethylammonio)but-2-enoate	17237
+AA	4-(trimethylammonio)butanoate	16244
+AA	Agrocinopine	82802
+AA	Alanine	2539/6171
+AA	Alpha amino acids	2642
+AA	Alpha-amino acid zwitterion	78608
+AA	Arginine	2643
+AA	Asparagine 	22653
+AA	Beta-alanine betaine	28825
+AA	Branched-chain amino acid	22918
+AA	Cysteine	4050
+AA	Cystine	4052
+AA	D-nopaline	7620
+AA	D-octopine	7366
+AA	Dipeptide	4634
+AA	Fructosyl-lysine	61393
+AA	Gamma-aminobutyric acid	1786
+AA	Glutamic acid	18237
+AA	Glutamine	5432/28300
+AA	Glutamate (2-)	29987
+AA	Glutathione	5437
+AA	Glycine	5460
+AA	Glycine betaine	3073
+AA	Histidine	5733
+AA	Homoserine	30653
+AA	Homoserine lactone	30656
+AA	Canavanine	3345
+AA	Cysteine	6207
+AA	Isoleucine	17191
+AA	Proline 	6286
+AA	Proline betaine	26272
+AA	Serine	6301
+AA	Threonine	16857/6308
+AA	Leucine	25017
+AA	Lysine	25094
+AA	Methionine	6829
+AA	N-acetyl-L-glutamic acid	17533
+AA	Oligopeptide	7755
+AA	Ornithine	7784
+AA	Peptides	7990/25906
+AA	Phenylalanine	8089
+AA	Proline	26271
+AA	Psicosyl-lysine	61425
+AA	Putrescine	8650
+AA	Serine	9116
+AA	Spermidine	9218
+AA	Taurine	9406
+AA	Tripeptide	9742
+AA	Tryptophan	9769
+AA	Tyrosine	9800
+AA	Valine	27266
+Drugs	2-(4-ethoxyphenyl)-5-(4-methylpiperazin-1-yl)-2,5-bibenzimidazole	5742
+Drugs	3,6-diamino-10-methylacridinium chloride	383703
+Drugs	Actinomycin D 	2446
+Drugs	Alphaprodine	135075
+Drugs	Amino cyclitol glycoside	22479
+Drugs	Ampicillin	28971
+Drugs	Antimicrobial agents	33281/22582
+Drugs	Arthrofactin	80022
+Drugs	Azaserine	74846
+Drugs	Azithromycin	2955
+Drugs	Aztreonam	2960
+Drugs	Beta-lactam	10426/10427
+Drugs	Bicozamycin	3091
+Drugs	Cefoperazone	3493
+Drugs	Cefoxitin	3500
+Drugs	Ceftazidime	3508
+Drugs	Chloramphenicol	3603
+Drugs	Ciprofloxacin	3717
+Drugs	Clindamycin	3745
+Drugs	Colistin	659853
+Drugs	Daunorubicin	4330
+Drugs	Doxorubicin	2496
+Drugs	Enoxacin	4796
+Drugs	Erythromycin A	4841
+Drugs	Ethidium	42478/4883
+Drugs	Florfenicol	87185
+Drugs	Fludarabine phosphate	63599
+Drugs	Fluoranthene	33083
+Drugs	Fluoroquinolone	87211
+Drugs	Fosfomycin	42503/28915
+Drugs	Fosmidomycin	443725
+Drugs	Gamma-hexachlorocyclohexane	10567
+Drugs	Gentamycin	24212
+Drugs	Hydroxyurea 	5816
+Drugs	Imipenem	5879
+Drugs	Landomycin A	70064
+Drugs	Lantibiotics	71644
+Drugs	Limonene	6463
+Drugs	Macrolide	25105/25106
+Drugs	Meropenem	43968
+Drugs	Metronidazole	6909
+Drugs	Microcin 	64627
+Drugs	Microcin c	82754
+Drugs	Mycosubtilin	29633
+Drugs	N-phenylacetamide	28884
+Drugs	Nalidixic acid	7456
+Drugs	Norfloxacin	7629/100246
+Drugs	Novobiocin	7644
+Drugs	Oleandomycin	7737
+Drugs	Phenanthrene	8051
+Drugs	Quinolone	23765
+Drugs	Safranin O	33601
+Drugs	Streptomycin	45745
+Drugs	Sulfamethoxazole	9332
+Drugs	Sulfanilamide	45373
+Drugs	Sulfathiazole	9337
+Drugs	Syringomycin	32174
+Drugs	Tetracycline	9474
+Drugs	Tigecycline	29696
+Drugs	Triclosan	29697
+Drugs	Trimethoprim	9731
+Drugs	Vancomycin	9931
+Drugs	Verapamil	9948
+Drugs	Vincaleukoblastine	9983
+Drugs	Nonspecific drug	23888
+NSIons	Ions	24870
+NSAnions	Anions	22563
+IAnions	Antimonite	30297
+IAnions	Arsenite (3-)	2846
+IAnions	Chloride (Cl-)	3731
+IAnions	Chromate (2-)	29393
+IAnions	Cyanate	23419
+IAnions	Cyanide	3969
+IAnions	Electrons	10545
+IAnions	Fluoride	17051
+IAnions	Molybdate	6968/6967/36264
+IAnions	Nitrate	71263/17632/7580
+IAnions	Nitrite	7585
+IAnions	Phosphate (3-)	7793/18367
+IAnions	Phosphite (3-)	29197
+IAnions	Phosphonate (2-)	8154
+IAnions	Selenite (2-)	9090
+IAnions	Silicate (4-)	29241
+IAnions	Sodium tungstate	63940
+IAnions	Sulfate 	9335
+IAnions	Sulfonate	33543
+IAnions	Sulfurous acid	9344
+IAnions	Tellurite	30477
+IAnions	Thiophosphate (2-)	74752
+IAnions	Tungstate 	46502
+IAnions	Vanadate	9929
+NSCations	Cation	3473
+ICations	Aluminium (Al3+)	49470
+ICations	Ammonium	7435
+ICations	Cadmium (Cd2+)	3290
+ICations	Calcium (Ca2+)	3308
+ICations	Cobalt (Co2+)	23337
+ICations	Copper (Cu+)	49551
+ICations	Copper (Cu2+)	23380
+ICations	Iron (Fe2+)	34754
+ICations	Iron (Fe3+)	34755
+ICations	Lead (Pb2+)	49807
+ICations	Lithium (Li+)	30143/49711/30145
+ICations	Magnesium (Mg2+)	6635/18420
+ICations	Manganese (Mn2+)	29035
+ICations	Nickel (Ni2+)	25517
+ICations	Potassium (K+)	8345/29103/49685
+ICations	Protons (H+)	24636/5584
+ICations	Rubidium (Rb+)	49847
+ICations	Silver (Ag+)	49468
+ICations	Sodium (Na+)	9175/49766/26708
+ICations	Tetramethylammonium	35264
+ICations	Zinc (Zn2+)	10113/27365
+ICations	Metal cation	25213
+NSMol	Molecule	25367
+Proteins	Protein polypeptide chain 	8526/16541
+Proteins	Proteins	14911/36080
+Proteins	Lipoprotein	6495
+Carbos	Polysaccharides	18154/8322/24403/72813/60963/37166
+Carbos	Lipopolysaccharides	6494/16412/64637/25051/89981
+Carbos	Lipooligosaccharides	25060
+Carbos	Peptidoglycans	8005
+Carbos	Teichuronic acid	64626
+Carbos	Beta-1,4-glucans	3529
+Lipids	Lipids	6486
+Lipids	Phospholipids	16247/8150/3411
+Lipids	Glycolipid	5476
+NAcids	Deoxyribonucleic acid	4291
+NAcids	Single-stranded DNA polynucleotide	75980
+NAP	Deoxyribonucleoside	23636
+NAP	Dimethylallyl-UTP	62896
+NAP	Nucleosides	7647
+NAP	Purine	35584
+NAP	Pyrimidine	8675
+NAP	Queuosine residue	64299
+NAP	Uracil	9882
+NAP	UTP	9850
+Neutral	Acrolein	15368
+Neutral	Ammonia	7434
+Neutral	Arene	33658
+Neutral	Ethanol	4879
+Neutral	Glycerol	5448
+Neutral	Long-chain alkane	83563
+Neutral	S,S-dimethyl-beta-propiothetin	16457
+Neutral	Thiourea 	29331
+Neutral	Urea	9888
+Neutral	Water 	5585
+OCations	(carboxymethyl)(dimethyl)sulfonium	4623
+OCations	Acridine orange free base	87346
+OCations	Carnitinium	3424
+OCations	Choline	3665
+OCations	Quaternary ammonium ion	8693
+OCations	Tetraphenylphosphonium	9502
+ODTA	2-oxoglutarate (2-)	16810
+ODTA	alpha-D-FucNAc4-(1->4)-beta-D-ManNAcA-(1->4)-D-GlcNAc-undecaprenyl diphosphate(3-)	61496
+ODTA	Aspartate (2-)	29995
+ODTA	Citrate salt	50744
+ODTA	Dicarboxylic acid dianion	23688
+ODTA	Ferrienterobactin (3-)	28199
+ODTA	Fumarate (2-)	42511
+ODTA	Glycerol 1-phosphate	14336
+ODTA	Itaconate (2-)	17240
+ODTA	Malate (2-)	15595
+ODTA	Malonate ester	38083
+ODTA	Mesaconate (2-)	14584
+ODTA	Monoacylglycerol phosphate	6606
+ODTA	Oxaloacetate (2-)	16452
+ODTA	Phthalate (2-)	17563
+ODTA	Sn-glycerol 3-phosphate	10648
+ODTA	Succinate (2-)	30031
+ODTA	Tartrate	35396
+ODTA	2-oxoglutaric acid	30915
+OMA	(3,4-dihydroxyphenyl)acetate	19889
+OMA	2-oxobutanoate	16763
+OMA	2-oxopentanoate	28644
+OMA	2,3-diketogulonate	57441
+OMA	3-methyl-2-oxobutanoate	11851
+OMA	3-methyl-2-oxovalerate	1585
+OMA	4-methyl-2-oxopentanoic acid	1891
+OMA	4-oxopentanoate	39150
+OMA	7,8-diaminononanoic acid	2247
+OMA	Acetate	13704
+OMA	Acetylcholine	2416
+OMA	Benzoate	16150
+OMA	Bile acid	3098
+OMA	Butyrate	17968
+OMA	Cinnamate	23248
+OMA	Cis-caffeic acid	3292
+OMA	Deoxycholate	23614
+OMA	Fatty acids	4984
+OMA	Ferulate	29749
+OMA	Formate	15740
+OMA	Fusaric acid	5199
+OMA	Glycolate	29805
+OMA	Hyaluronate	132153
+OMA	Hydratropic acid	48526
+OMA	Hydrogencarbonate	5589
+OMA	Lactate	24996
+OMA	Monocarboxylic acid anion	3407
+OMA	Orotate 	30839
+OMA	Pantothenate	14739
+OMA	Pyruvate	15361
+OMA	Short-chain fatty acid	26666
+OMA	Sodium dodecyl sulfate	8984
+OMA	Thiocarboxylic acid	33307
+OMA	Trans-2-coumaric acid	1047
+OMA	Valerate	7980/31011/14751/25890
+SM	Autoinducer-2	40646
+SM	Bacteriocin	48081
+SM	Corynebactin	31432
+SM	Detergent	27780
+SM	Diterpene	35190
+SM	Fe(III)-complexed hydroxamate siderophore	84688
+SM	Fe(III)-complexed siderophore	84734
+SM	N-acyl homoserine lactone	83169
+SM	Osmolyte	25728
+SM	Phytoalexin	26115
+SM	Polyketide	26188
+SM	Pyoverdine	84046
+SM	Siderophores	26672
+SM	Sphingosine 1-phosphate	37550
+SM	Toxin	27026
+SM	(R)-camphor	41334
+SM	Yersiniabactin	29707
+Sugars	[8)-alpha-Neu5Ac-(2->]n	61599
+Sugars	2-(E)-O-feruloyo-D-galactarate(2-)	58901
+Sugars	Allose	33935
+Sugars	Arabinose	22599
+Sugars	Beta-D-ribopyranose	10410
+Sugars	Beta-glucosides	60980
+Sugars	Cellobiose	3522/17057
+Sugars	D-glucitol	4246
+Sugars	D-mannitol	6686
+Sugars	D-xylonic acid	4262
+Sugars	Fructose	5172
+Sugars	D-fuconate	20938
+Sugars	Galactose	5256
+Sugars	D-galactonate	12931
+Sugars	Glucose	5418
+Sugars	D-gluconate	18391
+Sugars	Glycerates	24347
+Sugars	Hexose phosphate	47878
+Sugars	Hydroquinone O-beta-D-glucopyranoside	2806
+Sugars	Keto-D-fructose 6-phosphate	15946
+Sugars	Maltose	6668
+Sugars	Mannose	14575
+Sugars	Mannoside	25169
+Sugars	Melibiose	6733
+Sugars	Monosaccharide	35381
+Sugars	N-acetyl-beta-neuraminic acid	45744
+Sugars	N-glycoloyl-beta-neuraminic acid	62084
+Sugars	Pentoside	35312
+Sugars	Rhamnose	26546
+Sugars	Salicin	9002
+Sugars	Sucrose	9314
+Sugars	UDP-D-glucose	9845
+Sugars	UDP-sugars	9840
+Sugars	[3)-beta-D-galactopyranuronosyl-(1->3)-2-acetamido-4-amino-2,4,6-trideoxy-alpha-D-glucopyranosyl-(1->4)-beta-D-galactopyranurosyl-(1->]n	61650
+Sugars	UDP-N-acetyl glucosamine	28009/9823
+Vitamins	Biotin	3108
+Vitamins	Cobalamin	30411
+Vitamins	Cyanocob(III)alamin	17439
+Vitamins	Ferroheme b	5651
+Vitamins	Folic acid	5140
+Vitamins	Menaquinone	6749
+Vitamins	Nicotinic acid	7559
+Vitamins	Riboflavin	8843/17015
+Vitamins	Thiamine (1+)	9530
+Vitamins	Thiamine(1+) diphosphate	9532
+Vitamins	Thiazole	30637
